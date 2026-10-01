@@ -1,3 +1,9 @@
+let seconds = 0;
+let timeInterval = null;
+
+const timerDisplay = document.getElementById('timer-display');
+const result = document.getElementById('result');
+
 const game = document.getElementById('game');
 const resetButton = document.getElementById('reset-game');
 
@@ -11,23 +17,9 @@ let lockBoard = false;
 let moves = 0;
 let matchedCount = 0;
 
-startButton.addEventListener('click', () => {
-    game.classList.remove('disabled');
-    resetButton.classList.remove('disabled');
-    startButton.classList.add('disabled');
+startButton.addEventListener('click', initGame);
 
-    initGame();
-});
-
-resetButton.addEventListener('click', () => {
-    game.classList.remove('disabled');
-    resetButton.classList.remove('disabled');
-    startButton.classList.add('disabled');
-
-    initGame();
-});
-
-let dimension = 150;
+resetButton.addEventListener('click', initGame);
 
 const filenames = [
     'Cruelty','Curiosity','Falsity',
@@ -47,6 +39,16 @@ function shuffle(cards) {
 }
 
 function initGame() {
+
+    matchedCount = 0;
+    moves = 0;
+
+    game.classList.remove('disabled');
+    resetButton.classList.remove('disabled');
+    startButton.classList.add('disabled');
+
+    timeInterval = null;
+    seconds = 0;
 
     game.querySelectorAll('.card').forEach(el => el.remove());
     
@@ -72,6 +74,8 @@ function initGame() {
         console.log(cardElement.dataset)
         game.appendChild(cardElement);
     });
+
+    startTimer();
 }
 
 function handleCardClick(card) {
@@ -112,5 +116,31 @@ function checkMatch() {
         800);
         
     }
+
+    checkVictory();
     
+}
+
+function formatTime(sec) {
+    const minutes = Math.floor(sec/60);
+    const remainingSeconds = sec % 60;
+
+    const time = `${String(minutes).padStart(2,'0')}:${String(remainingSeconds).padStart(2,'0')}`;
+
+    return time;
+}
+
+function startTimer() {
+    timerDisplay.textContent = formatTime(seconds);
+    timeInterval = setInterval(() => {
+        seconds++;
+        timerDisplay.textContent = formatTime(seconds);
+    }, 1000);
+}
+
+function checkVictory() {
+    if (matchedCount === cards.length) {
+        clearInterval(timeInterval);
+        alert(`Congrats! You won in ${formatTime(seconds)}!`);
+    }
 }

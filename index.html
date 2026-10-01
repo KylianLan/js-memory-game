@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memority</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>Memority</h1>
 
-    <div id="game">
-        
+    <p class="opt">Hey! It's me! Memority!<br><br>
+        <button id="start-button">Start game</button>
+    </p>
+
+    <p>Time: <span id="timer-display">00:00</span></p><br>
+
+    <div id="game" class="disabled">
     </div>
+
+    <button id="reset-game" class="disabled">Restart</button>
+    
+    <script src="js/script.js" defer></script>
 </body>
 </html>

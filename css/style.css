@@ -1,0 +1,73 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* button {
+    
+} */
+
+.opt {
+    text-align: center;
+}
+
+.disabled {
+    opacity: 0;
+}
+
+#game {
+    padding: 1%;
+    margin: 10%;
+    padding: 20px;
+    margin: 20px auto;
+    border: 1px solid black;
+    width: 90%;
+    max-width: 650px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    justify-items: center;
+    align-items: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 100px;
+    height: 140px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.card.card-hidden .card-front {
+    display: none;
+}
+
+.card.card-hidden {
+    background-image: url(https://imgs.search.brave.com/wiC34lwBjus142vTjUl-NFVn0qgWEXg8pQnAn-Xx-Eo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTMz/OTU5MTc2NC9mci9w/aG90by9icm93bi1l/Y28tcmVjeWNsZWQt/a3JhZnQtcGFwZXIt/c2hlZXQtdGV4dHVy/ZS1jYXJkYm9hcmQt/YmFja2dyb3VuZC5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/aGhfcUpmSDJKb25Y/ZWJlWldkNlBCcldj/WDQ5eXFweWN5cnBx/UW1ReTBPTT0);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card:not(.card-hidden) .card-back {
+    display: none;
+}
+
+.matched {
+    background-color: green;
+}
